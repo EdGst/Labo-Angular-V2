@@ -1,7 +1,24 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import {HomeComponent} from "./components/home/home.component";
+import {TournamentComponent} from "./components/tournament/tournament.component";
+import {MemberComponent} from "./components/member/member.component";
+import {LoginComponent} from "./components/login/login.component";
 
-const routes: Routes = [];
+const routes: Routes = [
+  {path: 'home', component: HomeComponent},
+
+  {
+    path: 'tournament',
+    component: TournamentComponent,
+    loadChildren: () => import("./components/tournament/tournament.module").then((t) => t.TournamentModule)
+  },
+
+  {path: 'member', component: MemberComponent},
+
+  {path: 'login', component: LoginComponent}
+
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
